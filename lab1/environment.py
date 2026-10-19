@@ -3,16 +3,16 @@
 
 
 # ==== ПАРАМЕТРЫ ЛАБИРИНТА — впишите ======================================
-ROWS = None            # ← впишите
-COLS = None            # ← впишите
-EXIT = None            # ← впишите
+ROWS = 3
+COLS = 4
+EXIT = 12
 CELLS = None if ROWS is None or COLS is None else ROWS * COLS   # считается само
-START = None           # ← впишите
-GAMMA = None           # ← впишите
-STEP_R = None          # ← впишите
-EXIT_R = None          # ← впишите
-P_OK = None            # ← впишите
-P_SLIP = None          # ← впишите
+START = 1
+GAMMA = 0.9
+STEP_R = -1
+EXIT_R = 10
+P_OK = 0.8
+P_SLIP = 0.1
 # =========================================================================
 
 UP, DOWN, LEFT, RIGHT = 0, 1, 2, 3

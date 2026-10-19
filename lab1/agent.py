@@ -29,15 +29,19 @@ class Agent:
 
     # ценность шага по модели
     def q_value(self, state, action):
-        # Пропуск «на подумать» №1: что здесь посчитать — в условии задания на портале.
-        raise NotImplementedError(
-            "q_value ещё не дописан — что вписать, написано в условии задания на портале")
+        future = 0.0
+        for next_state, prob in self.env.transitions(state, action).items():
+            future += prob * self.v[next_state]
+        return STEP_R + GAMMA * future
 
     # правило обновления из опыта
     def learn(self, state, action, reward, next_state, done):
-        # Пропуск «на подумать» №2: что здесь посчитать — в условии задания на портале.
-        raise NotImplementedError(
-            "learn ещё не дописан — что вписать, написано в условии задания на портале")
+        if done:
+            target = reward
+        else:
+            target = reward + GAMMA * max(self.q[next_state].values())
+        self.q[state][action] = target      # результат — в таблицу оценок
+        self.seen.add((state, action))      # и отметим пару (клетка, ход) как встреченную
 
     # четыре оценки для клетки: по модели или по набранной таблице
     def row(self, state):
